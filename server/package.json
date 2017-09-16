@@ -1,0 +1,22 @@
+{
+  "name": "insysnsregisteret-app-client-server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "babel-cli": "6.14.0",
+    "babel-core": "6.14.0",
+    "csv": "^1.1.1",
+    "express": "4.13.3",
+    "node-fetch": "^1.7.3"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"cd .. && cd client && npm start\"",
+    "test": "jest --watchAll ",
+    "server": "babel-watch src/server.js"
+  },
+  "devDependencies": {
+    "babel-watch": "^2.0.6",
+    "concurrently": "3.1.0",
+    "jest": "^21.1.0"
+  }
+}
