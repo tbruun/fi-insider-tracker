@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 import CompanyNameSearch from "../components/input/CompanyNameSearch";
 import Api from "../service/API";
+import ResultTable from "../components/ResultTable";
 
 class App extends Component {
   state = {
-    companyName: ''
+    companyName: '',
+    result: []
   };
 
   fetchTransactions() {
     Api.getTransactions(this.state.companyName, (res) => {
-      console.log('res', res);
+      this.setState({ result: res.results })
     });
   };
 
   render() {
     return (
-      <div>
-        <CompanyNameSearch onChange={(companyName) => this.setState({companyName})}/>
-        <button onClick={() => this.fetchTransactions()}>Search</button>
+      <div style={{ marginTop: 24 }}>
+        <div style={{width: 400, margin: '0 auto' }}>
+        <Grid container>
+          <Grid item>
+            <CompanyNameSearch onChange={(companyName) => this.setState({companyName})}/>
+          </Grid>
+          <Grid item>
+            <Button raised color="primary" onClick={() => this.fetchTransactions()}>Search</Button>
+          </Grid>
+        </Grid>
+        </div>
+        <div style={{marginTop: 24}}>
+          {
+            this.state.result.length > 0 &&
+              <ResultTable data={this.state.result}/>
+          }
+        </div>
       </div>
     );
   }
