@@ -46,5 +46,5 @@ const fetchCsvByIssuer = (issuer, cb) => {
     .then(cb);
 };
 
-const NameLookupService = {lookupIssuer, fetchCsvByIssuer};
-module.exports = NameLookupService;
+const InsynsRegistretService = {lookupIssuer, fetchCsvByIssuer};
+module.exports = InsynsRegistretService;

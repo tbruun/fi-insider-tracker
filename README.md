@@ -2,12 +2,17 @@
 
 # Installation/Usage
 
-**Run the following in your terminal:**
+### Prerequisites
+NodeJS, MongoDB running localhost
+
+### Running
 
 ```bash
-cd server
+cd client
+npm install
+cd ../server
 npm install
 npm start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) in your browser to start!
+Visit [http://localhost:3000](http://localhost:3000) to start!
