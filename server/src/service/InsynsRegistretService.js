@@ -33,7 +33,8 @@ const lookupIssuer = (query, cb) => {
   return fetch(`https://marknadssok.fi.se/Publiceringsklient/sv-SE/AutoComplete/H%C3%A4mtaAutoCompleteLista?sokfunktion=Insyn&sokterm=${query}&falt=Utgivare`, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then(cb);
+    .then(res => cb(null, res))
+    .catch(err => cb(err));
 };
 
 const fetchCsvByIssuer = (issuer, cb) => {
@@ -43,7 +44,8 @@ const fetchCsvByIssuer = (issuer, cb) => {
     .then((res) => res.buffer())
     .then((res) => res.toString('ucs2'))
     .then(parseCSV)
-    .then(cb);
+    .then(res => cb(null, res))
+    .catch(err => cb(err));
 };
 
 const InsynsRegistretService = {lookupIssuer, fetchCsvByIssuer};

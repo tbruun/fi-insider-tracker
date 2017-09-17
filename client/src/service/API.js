@@ -26,5 +26,20 @@ const getTransactions = (issuer, cb) => {
     .then(cb);
 };
 
-const Api = { lookup, getTransactions };
+const addSubscription = (queryTerm, recipient, cb) => {
+  const body = {queryTerm, recipient};
+  const options = {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  };
+
+  return fetch('api/add-subscription', options)
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb)
+    .catch(console.log);
+};
+
+const Api = { lookup, getTransactions, addSubscription };
 export default Api;

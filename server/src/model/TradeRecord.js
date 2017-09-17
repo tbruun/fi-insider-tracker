@@ -27,6 +27,7 @@ class TradeRecord {
       description: fromCsv['Beskrivning av korrigering']
     };
     this.id = `${this.date.valueOf()}-${this.transaction.volume}-${this.transaction.price}`
+    this._id = this.id;
   }
 
 }

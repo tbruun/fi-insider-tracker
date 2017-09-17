@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid';
 import CompanyNameSearch from "../components/input/CompanyNameSearch";
 import Api from "../service/API";
 import ResultTable from "../components/ResultTable";
+import SubscribeForm from "../components/input/SubscribeForm";
 
 class App extends Component {
   state = {
@@ -21,6 +22,7 @@ class App extends Component {
     return (
       <div style={{ marginTop: 24 }}>
         <div style={{width: 400, margin: '0 auto' }}>
+          <form noValidate autoComplete="off" onSubmit={(e) => {e.preventDefault(); this.fetchTransactions();}}>
         <Grid container>
           <Grid item>
             <CompanyNameSearch onChange={(companyName) => this.setState({companyName})}/>
@@ -29,11 +31,15 @@ class App extends Component {
             <Button raised color="primary" onClick={() => this.fetchTransactions()}>Search</Button>
           </Grid>
         </Grid>
+          </form>
         </div>
         <div style={{marginTop: 24}}>
           {
             this.state.result.length > 0 &&
-              <ResultTable data={this.state.result}/>
+              <div>
+                <SubscribeForm queryTerm={this.state.companyName}/>
+                <ResultTable data={this.state.result}/>
+              </div>
           }
         </div>
       </div>
