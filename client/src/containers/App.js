@@ -21,6 +21,7 @@ class App extends Component {
     return (
       <div style={{ marginTop: 24 }}>
         <div style={{width: 400, margin: '0 auto' }}>
+          <form noValidate autoComplete="off" onSubmit={(e) => {e.preventDefault(); this.fetchTransactions();}}>
         <Grid container>
           <Grid item>
             <CompanyNameSearch onChange={(companyName) => this.setState({companyName})}/>
@@ -29,6 +30,7 @@ class App extends Component {
             <Button raised color="primary" onClick={() => this.fetchTransactions()}>Search</Button>
           </Grid>
         </Grid>
+          </form>
         </div>
         <div style={{marginTop: 24}}>
           {
