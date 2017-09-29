@@ -59,3 +59,7 @@ typings/
 
 #intellij
 .idea
+
+# builds
+/server/src/build
+/client/build

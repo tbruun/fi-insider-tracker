@@ -1,4 +1,5 @@
 const moment = require('moment');
+const get = require('lodash.get');
 
 class TradeRecord {
   constructor(fromCsv) {
@@ -32,13 +33,21 @@ class TradeRecord {
 
 }
 
+const getDate = (date) => {
+  try {
+    return moment(date).format('LL')
+  } catch (e) {
+    return 'N/A';
+  }
+};
+
 TradeRecord.stringify = (tradeRecord) => {
   return `
-    <b>${tradeRecord.transaction.type.toUpperCase()}</b>: ${tradeRecord.transaction.volume} Aktier. <br/>
-    <b>Pris:</b> ${tradeRecord.transaction.price} ${tradeRecord.transaction.currency}. <br/>
-    <b>Publiceringsdatum:</b> ${moment(tradeRecord.date).format('LL')} <br/>
-    <b>Transaktionsdatum:</b> ${moment(tradeRecord.transaction.date).format('LL')} <br/>
-    <b>Status:</b> ${tradeRecord.transaction.status}
+    <b>${get(tradeRecord, 'transaction.type', 'N/A').toUpperCase()}</b>: ${get(tradeRecord, 'transaction.volume')} Aktier.<br/>
+    <b>Pris:</b> ${get(tradeRecord, 'transaction.price')} ${get(tradeRecord, 'transaction.currency')}. <br/>
+    <b>Publiceringsdatum:</b> ${getDate(tradeRecord.date)} <br/>
+    <b>Transaktionsdatum:</b> ${getDate(tradeRecord.transaction.date)} <br/>
+    <b>Status:</b> ${get(tradeRecord, 'transaction.status')}
   `
 };
 

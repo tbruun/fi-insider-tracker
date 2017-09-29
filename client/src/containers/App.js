@@ -35,7 +35,10 @@ class App extends Component {
         <div style={{marginTop: 24}}>
           {
             this.state.result.length > 0 &&
-              <ResultTable data={this.state.result}/>
+              <div>
+                <a href={`/rss?q=${this.state.companyName}`}>Subscribe with RSS</a> (copy link to your RSS-reader)
+                <ResultTable data={this.state.result}/>
+              </div>
           }
         </div>
       </div>

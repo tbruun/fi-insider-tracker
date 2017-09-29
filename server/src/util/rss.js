@@ -30,21 +30,8 @@ module.exports = {
       title: tradeRecord.name,
       id: tradeRecord.id,
       link: 'url',
-      custom: 'custom',
-      description: 'description',
       content: TradeRecord.stringify(tradeRecord),
-      author: [{
-        name: tradeRecord.name,
-      }],
-      contributor: [{
-        name: 'Shawn Kemp',
-        email: 'shawnkemp@example.com',
-        link: 'https://example.com/shawnkemp'
-      }, {
-        name: 'Reggie Miller',
-        email: 'reggiemiller@example.com',
-        link: 'https://example.com/reggiemiller'
-      }],
+      author: tradeRecord.name,
       date: tradeRecord.date,
       image: 'img'
     })
