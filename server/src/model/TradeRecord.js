@@ -1,3 +1,4 @@
+const moment = require('moment');
 
 class TradeRecord {
   constructor(fromCsv) {
@@ -30,5 +31,15 @@ class TradeRecord {
   }
 
 }
+
+TradeRecord.stringify = (tradeRecord) => {
+  return `
+    <b>${tradeRecord.transaction.type.toUpperCase()}</b>: ${tradeRecord.transaction.volume} Aktier. <br/>
+    <b>Pris:</b> ${tradeRecord.transaction.price} ${tradeRecord.transaction.currency}. <br/>
+    <b>Publiceringsdatum:</b> ${moment(tradeRecord.date).format('LL')} <br/>
+    <b>Transaktionsdatum:</b> ${moment(tradeRecord.transaction.date).format('LL')} <br/>
+    <b>Status:</b> ${tradeRecord.transaction.status}
+  `
+};
 
 module.exports = TradeRecord;
