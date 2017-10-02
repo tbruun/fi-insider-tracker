@@ -46,5 +46,15 @@ const fetchCsvByIssuer = (issuer, cb) => {
     .then(cb);
 };
 
-const InsynsRegistretService = {lookupIssuer, fetchCsvByIssuer};
+const fetchCsvByDate = (fromDate, toDate, cb) => {
+  const options = {method: 'GET', cache: 'default'};
+  return fetch(`https://marknadssok.fi.se/publiceringsklient/sv-SE/Search/Search?SearchFunctionType=Insyn&Publiceringsdatum.From=${fromDate}&Publiceringsdatum.To=${toDate}&button=export`, options)
+    .then(checkStatus)
+    .then((res) => res.buffer())
+    .then((res) => res.toString('ucs2'))
+    .then(parseCSV)
+    .then(cb);
+};
+
+const InsynsRegistretService = {lookupIssuer, fetchCsvByIssuer, fetchCsvByDate};
 module.exports = InsynsRegistretService;

@@ -45,6 +45,7 @@ TradeRecord.stringify = (tradeRecord) => {
   return `
     <b>${get(tradeRecord, 'transaction.type', 'N/A').toUpperCase()}</b>: ${get(tradeRecord, 'transaction.volume')} Aktier.<br/>
     <b>Pris:</b> ${get(tradeRecord, 'transaction.price')} ${get(tradeRecord, 'transaction.currency')}. <br/>
+    <b>Utgivare:</b> ${get(tradeRecord, 'issuer')}<br/>
     <b>Publiceringsdatum:</b> ${getDate(tradeRecord.date)} <br/>
     <b>Transaktionsdatum:</b> ${getDate(tradeRecord.transaction.date)} <br/>
     <b>Status:</b> ${get(tradeRecord, 'transaction.status')}
