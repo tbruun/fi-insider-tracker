@@ -53,7 +53,6 @@ app.get('/rss/today', (req, response) => {
   const tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
   insynsRegistretService.fetchCsvByDate(yesterday, tomorrow, results => {
     if (results) {
-      console.log('returning data from FI web');
       const feed = createFeed(req.query.q);
       results.forEach(tradeRecord => addToFeed(feed, tradeRecord));
       response.set('Content-Type', 'application/rss+xml');
