@@ -23,7 +23,7 @@ app.get('/api/get-transactions', (req, response) => {
   if (req.query.q.length > 2) {
     insynsRegistretService.fetchCsvByIssuer(req.query.q, results => {
       if (results) {
-        console.log('returning data from FI web');
+        console.log(new Date(), 'returning data from FI web');
         return response.json({results})
       } else {
         return response.status(404).send();
@@ -36,7 +36,7 @@ app.get('/rss', (req, response) => {
   if (req.query.q.length > 2) {
     insynsRegistretService.fetchCsvByIssuer(req.query.q, results => {
       if (results) {
-        console.log('returning data from FI web');
+        console.log(new Date(), 'returning data from FI web');
         const feed = createFeed(req.query.q);
         results.forEach(tradeRecord => addToFeed(feed, tradeRecord));
         response.set('Content-Type', 'application/rss+xml');
@@ -53,6 +53,7 @@ app.get('/rss/today', (req, response) => {
   const tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
   insynsRegistretService.fetchCsvByDate(yesterday, tomorrow, results => {
     if (results) {
+      console.log(new Date(), 'returning data for /rss/today from FI web ');
       const feed = createFeed(req.query.q);
       results.forEach(tradeRecord => addToFeed(feed, tradeRecord));
       response.set('Content-Type', 'application/rss+xml');
